@@ -1,5 +1,11 @@
 'use strict';
 
+// <######## START NEW TUESDAY CODE ########>
+
+// <######## END NEW TUESDAY CODE ########>
+
+// <######## START WORKING ADAM LECTURE ########>
+
 // Constructor: just a function which is just an object.
 // When we go to create a new instance we will need each parameter.
 function CookieStore(name, minCustomers, maxCustomers, avgCookies, hourlyCount) {
@@ -103,6 +109,9 @@ var tableDivEl = document.getElementById('table-div');
 tableDivEl.appendChild(tableEl);
 // Stick with one script per HTML page for now.
 
+// <######## END WORKING ADAM LECTURE ########>
+
+// <######## START TUESDAY CODE RE-VIEW ########>
 /*
 //var sectionEl = document.getElementById('Hello');
 //var divEl = document.getElementsByClassName('other'); // Could dynamicallky build this array var domEl = ['pike-store', ...];
@@ -186,35 +195,11 @@ for (var iStores = 0; ) {
   createElement('li,' 'class', 'store-total', ...)
 
 }
-
 */
+// <######## END TUESDAY CODE RE-VIEW ########>
 
-// INSTRUCTIONS
-//
-// Build an application that calculates daily sales projections for each location (in a file called sales.html)
-// Create a pubic-facing page (in a file called index.html) that is colorful, eye-catching, readable, useful, informative... and ultimately of a quality ready for use on T-shirts, etc.
-//
-// Needs to calculate the number of cookies each location must make every day so that it can manage its supplies inventory and baking schedule.
-//
-// The number of cookies to make depends on the hours of operation (6:00 AM to 8:00 PM for all locations) and a few factors unique to each location:
-// The minimum number of customers per hour.
-// The maximum number of customers per hour.
-// The average number of cookies purchased per customer.
-//
-// Pat will need to be able to add and remove locations from the daily projections report.
-//
-// Pat will also need to be able to easily modify the input numbers for each location based on day of the week, special events, and other factors.
-//
-// Pat would like to see these numbers with nice formatting in a web application.
-// Pat has a logo image picked out; an illustration of a fish.
-// Pat has asked you come up with all other aspects of the design for both documents, including a color scheme and a custom font, and maybe additional images, for a public-facing webpage.
-//
-// First, create a separate JS object literal (no constructor functions... yet) for each shop location that does the following:
-// Estimates for now.
-
-// **** **** Begin Working Code from Monday Feb 13 **** ****
+// <######## START WORKING MONDAY CODE ########>
 /*
-
 var firstAndPike = {
   title: 'First and Pike',
   // name: 'First and Pike', // Used for working console.
@@ -351,17 +336,10 @@ for (var j = 0; j < eachStore.length; j++) {
 // Solutions: create a new property "title" and use .title as text on line 149.
 
 */
-// **** **** End Working Code from Monday Feb 13 **** ****
+// <######## END WORKING MONDAY CODE ########>
 
-// REFERENCE ONLY.
-// var userElement = document.createElement('p'); // Step 1. Create or access getElementById to change.
-// userElement.setAttribute('id', 'eachStore[j]'); // Step 2. Set Elements. Assign.
-// userElement.textContent = totalCookiesStore; // Dynamic from what the user enters.
-// var sectionEl = document.getElementById('container');
-// sectionEl.appendChild(userElement);
-
-// // Begin working console test. Need eachHour array.
-
+// <######## START WORKING MONDAY CONSOLE TEST ########>
+/*
 // // Shows log of each store, all cookies, and total cookies.
 // for (var j = 0; j < eachStore.length; j++) {
 //   var totalCookiesStore = 0;
@@ -375,150 +353,5 @@ for (var j = 0; j < eachStore.length; j++) {
 //   }
 //   console.log('Total cookies: ' + totalCookiesStore);
 // }
-
-// *************** BEGIN DUPLICATE HTML CODE EXAMPLE *****************
-
-// var userElement = document.createElement('h1'); // Step 1. Create or access getElementById to change.
-// Created userElement = <h1></h1>
-
-//userElement.setAttribute('id', 'first-user-heading'); // Step 2. Set Elements. Assign
-// userElement = <h1 id="first-user-heading">someUserName</h1> // Whatever the user enters.
-
-//userElement.textContent = myUser.fullName; // Dynamic from what the user enters.
-// userElement = <h1 id="first-user-heading"></h1>
-// HTML type. A method that is on any HTML method node.
-// UserElement now has access to all. An instance with 2 arguments.
-// Can set arguments with whatever you like.
-
-// var sectionEl = document.getElementById('main-content'); // Got reference (sectionEl). List var at top of page.
-// <section> id="main-content"></section>
-// Give access to what I want this element's parent to be.
-// HTML element node. Call element, el, or els.
-
-// sectionEl.appendChild(userElement); // Step 3. Hand to DOM or it won't know to put on screen.
-// A child of body in HTML. Gave me a box to reference here.
-// Child will make a child, we could make a sibling.
-// Node collection. Tell document getElementById will only return one object.
-// Append child will put content at the end of the list if there is more than one <li>.
-
-// *************** END OF HTML CODE EXAMPLE ******************
-
-// // Object.Property/MethodName
-// console.log(alki.totalCookiesHour());
-// // Holds randomly generated customer value.
-// alki.numberOfCustomers = alki.randomCustomers();
-// // Randomly generated customers between min and max.
-// console.log(alki.numberOfCustomers);
-// // Outputs customer number over total hours.
-// console.log(alki.customersPerHour());
-
-// console.log(alki.randomCustomers());
-// console.log(alki.doSomeMath());
-// console.log(alki.avgSale);
-// console.log(alki['minCust']);
-
-// Stores the min/max hourly customers, and the average cookies per customer, in object properties
-
-// var minHourlyCust = [];
-// var maxHourlyCust = [];
-// var avgCookiesPerCust = [];
-
-// Uses a method of that object to generate a random number of customers per hour. Objects/Math/random
-
-// function customerPerHour() {
-//   // (number of customers in each hour) * (hours)
-//   // (Range is between minCust and maxCust)
-// }
-
-// Loop through;
-// push to array sales per hour parseInt(Random Customer * Avg Sale)
-// 2D array of stores [i] and array of hours [j].
-
-// Calculate and store the simulated amounts of cookies purchased for each hour at each location using average cookies purchased and the random number of customers generated
-//
-// Store the results for each location in a separate array... perhaps as a property of the object representing that location
-//
-// Display the values of each array as unordered lists in the browser
-
-// Calculating the sum of these hourly totals; your output for each location should look like this:
-//
-// 1st and Pike
-//
-// 6am: 16 cookies
-// 7am: 20 cookies
-// 8am: 35 cookies
-// 9am: 48 cookies
-// 10am: 56 cookies
-// 11am: 77 cookies
-// 12pm: 93 cookies
-// 1pm: 144 cookies
-// 2pm: 119 cookies
-// 3pm: 84 cookies
-// 4pm: 61 cookies
-// 5pm: 23 cookies
-// 6pm: 42 cookies
-// 7pm: 57 cookies
-// 8pm: 29 cookies
-// Total: 657 cookies
-
-// Here are the starting numbers that you'll need to build these objects:
-
-// Once there has been some history collected that provides more accurate numbers, we'll want the ability to update these numbers for each location, and to add/remove locations. But we'll not build all of that today. Make sure to make each location is its own JavaScript object.
-
-/*
-
 */
-
-// END INSTRUCTIONS
-
-// BEGIN ADAM EXAMPLE
-
-// // var myTweets = ['asdf', 'asdf', 'asdf'];
-// var userFullName = prompt('Please enter your full name.');
-// var userEmail = prompt('Please enter your email');
-//
-// var myUser = {
-//   fullName: userFullName,
-//   email: userEmail,
-//   login: function(){
-//     console.log(this.fullName + ' has now logged in!'); // 2. Happens second. Defining, but not using yet.
-//   } // This will add a function to this object. It will not call automaticlly. Or...
-// };
-//
-// console.log('--- NEW USER ---');
-//
-// console.log(myUser);
-// myUser.login();
-//
-// console.log('--- PRESENT ELEMENTS! ---');
-//
-// // // Alternate way.
-// // var userHeadingEl = document.getElementById('first-user-heading'); // Step 1.
-// // // Alternative way. Doesn't require DOM step. This way is easier, but steps aren't as clear.
-// // // Will potentially enter HTML trash where not needed.
-// // userHeadingEl.textContent = myUser.fullName; // Step 2.
-// // // Step 3. Doesn't exist because the element already exists on the DOM in the HTML page.
-//
-// var userElement = document.createElement('h1'); // Step 1. Create or access getElementById to change.
-//
-// // Created userElement = <h1></h1>
-//
-// userElement.setAttribute('id', 'first-user-heading'); // Step 2. Set Elements. Assign
-// // userElement = <h1 id="first-user-heading">someUserName</h1> // Whatever the user enters.
-//
-// userElement.textContent = myUser.fullName; // Dynamic from what the user enters.
-// // userElement = <h1 id="first-user-heading"></h1>
-// // HTML type. A method that is on any HTML method node.
-// // UserElement now has access to all. An instance with 2 arguments.
-// // Can set arguments with whatever you like.
-//
-// var sectionEl = document.getElementById('main-content'); // Got reference (sectionEl). List var at top of page.
-// // <section> id="main-content"></section>
-// // Give access to what I want this element's parent to be.
-// // HTML element node. Call element, el, or els.
-//
-// sectionEl.appendChild(userElement); // Step 3. Hand to DOM or it won't know to put on screen.
-// // A child of body in HTML. Gave me a box to reference here.
-// // Child will make a child, we could make a sibling.
-// // Node collection. Tell document getElementById will only return one object.
-// // Append child will put content at the end of the list if there is more than one <li>.
+// <######## END WORKING MONDAY CONSOLE TEST ########>
