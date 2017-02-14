@@ -24,10 +24,14 @@
 // Estimates for now.
 
 var firstAndPike = {
-  name: 'First and Pike',
+  title: 'First and Pike',
+  // name: 'First and Pike', // Used for working console.
+  name: 'first-and-pike',
   minCust: 23,
   maxCust: 65,
   avgCookieSale: 6.3,
+  totalHours: 15,
+  salesPerHour: [],
   randomCustomers: function() {
     return Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust;
   },
@@ -40,10 +44,14 @@ var firstAndPike = {
 };
 
 var seaTacAirport = {
-  name: 'Seatac Airport',
+  title: 'Seatac Airport',
+  // name: 'Seatac Airport', // Used for working console.
+  name: 'seatac-airport',
   minCust: 3,
   maxCust: 24,
   avgCookieSale: 1.2,
+  totalHours: 15,
+  salesPerHour: [],
   randomCustomers: function() {
     return Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust;
   },
@@ -56,10 +64,14 @@ var seaTacAirport = {
 };
 
 var seattleCenter = {
-  name: 'Seattle Center',
+  title: 'Seattle Center',
+  // name: 'Seattle Center', // Used for working console.
+  name: 'seattle-center',
   minCust: 11,
   maxCust: 38,
   avgCookieSale: 2.3,
+  totalHours: 15,
+  salesPerHour: [],
   randomCustomers: function() {
     return Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust;
   },
@@ -72,10 +84,14 @@ var seattleCenter = {
 };
 
 var capitolHill = {
-  name: 'Capitol Hill',
+  title: 'Capitol Hill',
+  // name: 'Capitol Hill', // Used for working console.
+  name: 'capitol-hill',
   minCust: 20,
   maxCust: 38,
   avgCookieSale: 2.3,
+  totalHours: 15,
+  salesPerHour: [],
   randomCustomers: function() {
     return Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust;
   },
@@ -88,9 +104,9 @@ var capitolHill = {
 };
 
 var alki = {
-  // Properties
-  name: 'Alki',
-  // tag: 'alki-list-item',
+  title: 'Alki',
+  // name: 'Alki', // Used for working console.
+  name: 'alki',
   minCust: 2,
   maxCust: 16,
   avgCookieSale: 4.6,
@@ -98,36 +114,12 @@ var alki = {
   salesPerHour: [],
   numberOfCustomers: 0, // Used to hold the random customers result.
 
-  // Generate a random number between min and max customer count per store.
-  // Credit to MDN: Getting a random integer between two values, inclusive.
+  // MDN. Generate a random number between min and max customer count per store.
   randomCustomers: function(/*minCust, maxCust*/) {
     // Math.ceil(this.minCust);
     // Math.floor(this.maxCust);
     return Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust;
   },
-  // randomCustomers: function(min, max) {
-  //   min = Math.ceil(min);
-  //   min = Math.floor(max);
-  //   return Math.floor(Math.random() * (max - min + 1)) + min;
-    // return Math.floor(Math.random() * ((this.maxCust + 1 - this.minCust) ) + this.minCust);
-    // return Math.floor(Math.random() * ((this.maxCust + 1 - this.minCust) ) + this.minCust);
-    //
-    // function getRandomIntInclusive(min, max) {
-    //   min = Math.ceil(min);
-    //   max = Math.floor(max);
-    //   return Math.floor(Math.random() * (max - min + 1)) + min;
-    // }
-    // var randomNumber = Math.floor(Math.random() * 6) + 1;
-    // var hours = 14;
-    // var randomCustomers = Math.floor(Math.random() * 15) + 1;
-    // console.log(customersPerHour);
-    // 6am to 8pm is 6+8 or 15 hours.
-    //
-    // Method
-    // doSomeMath: function() {
-    //   return this.minCust + this.maxCust;
-    // }
-    // Method
 
   // Total number of random customers over 15 hours.
   customersPerHour: function() {
@@ -138,55 +130,80 @@ var alki = {
   }
 };
 
-var eachHour = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+var eachHour = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 var eachStore = [firstAndPike, seaTacAirport, seattleCenter, capitolHill, alki];
+
+// Use for working console.
+// var eachHour = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 // var eachStoreTag = ['first-and-pike', 'seatac-airport', 'seattle-center', 'capitol-hill', 'alki'];
-// Nested for loops.
-// function allTheCookies() {
+
+// Loop through all the stores and create list for each.
 for (var j = 0; j < eachStore.length; j++) {
-  var totalCookiesStore = 0;
-  console.log(eachStore[j].name);
+  var storeHours = document.createElement('ul');
+  // Loop through all the hours.
   for (var i = 0; i < eachHour.length; i++) {
-    eachHour[i];
-    var totalCookieHour = eachStore[j].totalCookiesHour();
-    console.log('This is for the ' + eachStore[j].name + ' store at ' + eachHour[i] + ':00 - ' + totalCookieHour);
-    totalCookiesStore += totalCookieHour;
-    // Total cookies starts at 0 + first hour + second hour ...
+    // For each store, take all cookies sold, and store in empty array.
+    eachStore[j].salesPerHour.push(parseInt(eachStore[j].randomCustomers() * eachStore[j].avgCookieSale));
+    // Hold list items in a variable, use that variable to enter text.
+    var elementBucket = document.createElement('li');
+    elementBucket.textContent = eachHour[i] + ', ' + eachStore[j].title + ', ' + eachStore[j].salesPerHour[i];
+    storeHours.appendChild(elementBucket);
   }
-  console.log('Total cookies: ' + totalCookiesStore);
+  // Step 3. Hand to DOM
+  var allTheStores = document.getElementById(eachStore[j].name);
+  allTheStores.appendChild(storeHours);
 }
+// Problems: was store name and tag used the same property. Need store totals from working console.
+// Solutions: create a new property "title" and use .title as text on line 149.
+
+// var userElement = document.createElement('p'); // Step 1. Create or access getElementById to change.
+// userElement.setAttribute('id', 'eachStore[j]'); // Step 2. Set Elements. Assign.
+// userElement.textContent = totalCookiesStore; // Dynamic from what the user enters.
+// var sectionEl = document.getElementById('container');
+// sectionEl.appendChild(userElement);
+
+// // Begin working console test. Need eachHour array.
+
+// // Shows log of each store, all cookies, and total cookies.
+// for (var j = 0; j < eachStore.length; j++) {
+//   var totalCookiesStore = 0;
+//   console.log(eachStore[j].name);
+//   for (var i = 0; i < eachHour.length; i++) {
+//     eachHour[i];
+//     var totalCookieHour = eachStore[j].totalCookiesHour();
+//     console.log('This is for the ' + eachStore[j].name + ' store at ' + eachHour[i] + ':00 - ' + totalCookieHour);
+//     totalCookiesStore += totalCookieHour;
+//     // Total cookies starts at 0 + first hour + second hour ...
+//   }
+//   console.log('Total cookies: ' + totalCookiesStore);
 // }
-// allTheCookies();
+
+// *************** BEGIN DUPLICATE HTML CODE EXAMPLE *****************
 
 // var userElement = document.createElement('h1'); // Step 1. Create or access getElementById to change.
-var userElement = document.createElement('p'); // Step 1. Create or access getElementById to change.
 // Created userElement = <h1></h1>
 
 //userElement.setAttribute('id', 'first-user-heading'); // Step 2. Set Elements. Assign
-userElement.setAttribute('id', 'eachStore[j]'); // Step 2. Set Elements. Assign
 // userElement = <h1 id="first-user-heading">someUserName</h1> // Whatever the user enters.
 
 //userElement.textContent = myUser.fullName; // Dynamic from what the user enters.
-userElement.textContent = totalCookiesStore; // Dynamic from what the user enters.
 // userElement = <h1 id="first-user-heading"></h1>
 // HTML type. A method that is on any HTML method node.
 // UserElement now has access to all. An instance with 2 arguments.
 // Can set arguments with whatever you like.
 
 // var sectionEl = document.getElementById('main-content'); // Got reference (sectionEl). List var at top of page.
-var sectionEl = document.getElementById('container');
 // <section> id="main-content"></section>
 // Give access to what I want this element's parent to be.
 // HTML element node. Call element, el, or els.
 
 // sectionEl.appendChild(userElement); // Step 3. Hand to DOM or it won't know to put on screen.
-sectionEl.appendChild(userElement);
 // A child of body in HTML. Gave me a box to reference here.
 // Child will make a child, we could make a sibling.
 // Node collection. Tell document getElementById will only return one object.
 // Append child will put content at the end of the list if there is more than one <li>.
 
-// *************** END OF HTML CODE ******************
+// *************** END OF HTML CODE EXAMPLE ******************
 
 // // Object.Property/MethodName
 // console.log(alki.totalCookiesHour());
