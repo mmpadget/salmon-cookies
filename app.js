@@ -24,43 +24,84 @@
 // Estimates for now.
 
 var firstAndPike = {
+  name: 'First and Pike',
   minCust: 23,
   maxCust: 65,
-  avgSale: 6.3
+  avgCookieSale: 6.3,
+  randomCustomers: function() {
+    return Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust;
+  },
+  customersPerHour: function() {
+    return this.numberOfCustomers * this.totalHours;
+  },
+  totalCookiesHour: function() {
+    return Math.floor(this.randomCustomers() * this.avgCookieSale);
+  }
 };
 
 var seaTacAirport = {
+  name: 'Seatac Airport',
   minCust: 3,
   maxCust: 24,
-  avgSale: 1.2
+  avgCookieSale: 1.2,
+  randomCustomers: function() {
+    return Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust;
+  },
+  customersPerHour: function() {
+    return this.numberOfCustomers * this.totalHours;
+  },
+  totalCookiesHour: function() {
+    return Math.floor(this.randomCustomers() * this.avgCookieSale);
+  }
 };
 
 var seattleCenter = {
+  name: 'Seattle Center',
   minCust: 11,
   maxCust: 38,
-  avgSale: 2.3
+  avgCookieSale: 2.3,
+  randomCustomers: function() {
+    return Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust;
+  },
+  customersPerHour: function() {
+    return this.numberOfCustomers * this.totalHours;
+  },
+  totalCookiesHour: function() {
+    return Math.floor(this.randomCustomers() * this.avgCookieSale);
+  }
 };
 
 var capitolHill = {
+  name: 'Capitol Hill',
   minCust: 20,
   maxCust: 38,
-  avgSale: 2.3
+  avgCookieSale: 2.3,
+  randomCustomers: function() {
+    return Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust;
+  },
+  customersPerHour: function() {
+    return this.numberOfCustomers * this.totalHours;
+  },
+  totalCookiesHour: function() {
+    return Math.floor(this.randomCustomers() * this.avgCookieSale);
+  }
 };
 
 var alki = {
   // Properties
+  name: 'Alki',
   minCust: 2,
   maxCust: 16,
-  avgSale: 4.6,
+  avgCookieSale: 4.6,
   totalHours: 15,
   salesPerHour: [],
   numberOfCustomers: 0, // Used to hold the random customers result.
 
   // Generate a random number between min and max customer count per store.
   // Credit to MDN: Getting a random integer between two values, inclusive.
-  randomCustomers: function(minCust, maxCust) {
-    Math.ceil(this.minCust);
-    Math.floor(this.maxCust);
+  randomCustomers: function(/*minCust, maxCust*/) {
+    // Math.ceil(this.minCust);
+    // Math.floor(this.maxCust);
     return Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust;
   },
   // randomCustomers: function(min, max) {
@@ -77,7 +118,6 @@ var alki = {
     // }
     // var randomNumber = Math.floor(Math.random() * 6) + 1;
     // var hours = 14;
-    // var eachHour = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
     // var randomCustomers = Math.floor(Math.random() * 15) + 1;
     // console.log(customersPerHour);
     // 6am to 8pm is 6+8 or 15 hours.
@@ -91,17 +131,62 @@ var alki = {
   // Total number of random customers over 15 hours.
   customersPerHour: function() {
     return this.numberOfCustomers * this.totalHours;
+  },
+  totalCookiesHour: function() {
+    return Math.floor(this.randomCustomers() * this.avgCookieSale);
   }
 };
 
-// Object.Property/MethodName
+var eachHour = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+var eachStore = [firstAndPike, seaTacAirport, seattleCenter, capitolHill, alki];
+// Nested for loops.
+for (var j = 0; j < eachStore.length; j++) {
+  var totalCookiesStore = 0;
+  console.log(eachStore[j].name);
+  for (var i = 0; i < eachHour.length; i++) {
+    eachHour[i];
+    var totalCookieHour = eachStore[j].totalCookiesHour();
+    console.log('This is for the ' + eachStore[j].name + ' store at ' + eachHour[i] + ':00 - ' + totalCookieHour);
+    totalCookiesStore += totalCookieHour;
+    // Total cookies starts at 0 + first hour + second hour ...
+  }
+  console.log('Total cookies: ' + totalCookiesStore);
+}
 
-// Holds randomly generated customer value.
-alki.numberOfCustomers = alki.randomCustomers();
-// Randomly generated customers between min and max.
-console.log(alki.numberOfCustomers);
-// Outputs customer number over total hours.
-console.log(alki.customersPerHour());
+var userElement = document.createElement('h1'); // Step 1. Create or access getElementById to change.
+
+// Created userElement = <h1></h1>
+
+userElement.setAttribute('id', 'first-user-heading'); // Step 2. Set Elements. Assign
+// userElement = <h1 id="first-user-heading">someUserName</h1> // Whatever the user enters.
+
+userElement.textContent = myUser.fullName; // Dynamic from what the user enters.
+// userElement = <h1 id="first-user-heading"></h1>
+// HTML type. A method that is on any HTML method node.
+// UserElement now has access to all. An instance with 2 arguments.
+// Can set arguments with whatever you like.
+
+var sectionEl = document.getElementById('main-content'); // Got reference (sectionEl). List var at top of page.
+// <section> id="main-content"></section>
+// Give access to what I want this element's parent to be.
+// HTML element node. Call element, el, or els.
+
+sectionEl.appendChild(userElement); // Step 3. Hand to DOM or it won't know to put on screen.
+// A child of body in HTML. Gave me a box to reference here.
+// Child will make a child, we could make a sibling.
+// Node collection. Tell document getElementById will only return one object.
+// Append child will put content at the end of the list if there is more than one <li>.
+
+// *************** END OF HTML CODE ******************
+
+// // Object.Property/MethodName
+// console.log(alki.totalCookiesHour());
+// // Holds randomly generated customer value.
+// alki.numberOfCustomers = alki.randomCustomers();
+// // Randomly generated customers between min and max.
+// console.log(alki.numberOfCustomers);
+// // Outputs customer number over total hours.
+// console.log(alki.customersPerHour());
 
 // console.log(alki.randomCustomers());
 // console.log(alki.doSomeMath());
