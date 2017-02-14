@@ -90,6 +90,7 @@ var capitolHill = {
 var alki = {
   // Properties
   name: 'Alki',
+  // tag: 'alki-list-item',
   minCust: 2,
   maxCust: 16,
   avgCookieSale: 4.6,
@@ -139,7 +140,9 @@ var alki = {
 
 var eachHour = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 var eachStore = [firstAndPike, seaTacAirport, seattleCenter, capitolHill, alki];
+// var eachStoreTag = ['first-and-pike', 'seatac-airport', 'seattle-center', 'capitol-hill', 'alki'];
 // Nested for loops.
+// function allTheCookies() {
 for (var j = 0; j < eachStore.length; j++) {
   var totalCookiesStore = 0;
   console.log(eachStore[j].name);
@@ -152,26 +155,32 @@ for (var j = 0; j < eachStore.length; j++) {
   }
   console.log('Total cookies: ' + totalCookiesStore);
 }
+// }
+// allTheCookies();
 
-var userElement = document.createElement('h1'); // Step 1. Create or access getElementById to change.
-
+// var userElement = document.createElement('h1'); // Step 1. Create or access getElementById to change.
+var userElement = document.createElement('p'); // Step 1. Create or access getElementById to change.
 // Created userElement = <h1></h1>
 
-userElement.setAttribute('id', 'first-user-heading'); // Step 2. Set Elements. Assign
+//userElement.setAttribute('id', 'first-user-heading'); // Step 2. Set Elements. Assign
+userElement.setAttribute('id', 'eachStore[j]'); // Step 2. Set Elements. Assign
 // userElement = <h1 id="first-user-heading">someUserName</h1> // Whatever the user enters.
 
-userElement.textContent = myUser.fullName; // Dynamic from what the user enters.
+//userElement.textContent = myUser.fullName; // Dynamic from what the user enters.
+userElement.textContent = totalCookiesStore; // Dynamic from what the user enters.
 // userElement = <h1 id="first-user-heading"></h1>
 // HTML type. A method that is on any HTML method node.
 // UserElement now has access to all. An instance with 2 arguments.
 // Can set arguments with whatever you like.
 
-var sectionEl = document.getElementById('main-content'); // Got reference (sectionEl). List var at top of page.
+// var sectionEl = document.getElementById('main-content'); // Got reference (sectionEl). List var at top of page.
+var sectionEl = document.getElementById('container');
 // <section> id="main-content"></section>
 // Give access to what I want this element's parent to be.
 // HTML element node. Call element, el, or els.
 
-sectionEl.appendChild(userElement); // Step 3. Hand to DOM or it won't know to put on screen.
+// sectionEl.appendChild(userElement); // Step 3. Hand to DOM or it won't know to put on screen.
+sectionEl.appendChild(userElement);
 // A child of body in HTML. Gave me a box to reference here.
 // Child will make a child, we could make a sibling.
 // Node collection. Tell document getElementById will only return one object.
