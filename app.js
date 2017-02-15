@@ -2,10 +2,70 @@
 
 // <######## START NEW TUESDAY CODE ########>
 
+function CookieStore(name, minCustomers, maxCustomers, avgCookies, hourlyCount) {
+  this.name = name; // The name of the cookie store.
+  this.minCustomers = minCustomers; // "this" is dynamic and "this" context will change over and over again.
+  this.maxCustomers = maxCustomers; // "this" knows what it is depending on the context.
+  this.avgCookies = avgCookies; // "this" gets replaced with "pikePlace" below.
+  this.hourlyCount = []; // Default empty array. Here, this would be empty every time.
+  this.range = maxCustomers - minCustomers;
+}
+
+CookieStore.prototype.getAvgCookieCount = function(){
+  console.log('got avg cookie count.');
+  return Math.floor(Math.random() * ((this.range + 1) + this.minCustomers) * this.avgCookies);
+  this.avgCookies;
+};
+
+// An instance of a cookie store. pikePlace is an instance.
+var firstAndPike = new CookieStore('First and Pike', 23, 65, 6.3);
+firstAndPike.getAvgCookieCount();
+
+// Order: >> ('name', minCustomers, maxCustomers, avgCookies, hourlyCount);
+var seaTacAirport = new CookieStore('Seatac Airport', 3, 24, 1.2);
+var seattleCenter = new CookieStore('Seattle Center', 11, 38, 2.3);
+var capitolHill = new CookieStore('Capitol Hill', 20, 38, 2.3);
+var alki = new CookieStore('Alki', 2, 16, 4.6);
+
+var stores = [firstAndPike, seattleCenter, capitolHill, alki];
+
+// Populate into a simple table. Simple for loop: populate two stores into table.
+var tableEl = document.createElement('table'); // tableEl = <table></table> Step 1. Create entire table.
+
+for (var i = 0; i < stores.length; i++) {
+  // stores[i] // Start: get reference to current store in relation to this loop.
+  var currentStore = stores[i]; // Access each store to get it's data.
+
+  var rowEl = document.createElement('tr'); // If it was 'img' it would be a self closing tag and would work.
+  tableEl.appendChild(rowEl); // Get row element onto the table. Row is parent for each store.
+
+  var nameEl = document.createElement('th'); // Name of the current store.
+  nameEl.textContent = currentStore.name; // A new node element. Defining the text in the <th> tag.
+  rowEl.appendChild(nameEl); // nameEl is the child.
+
+  var minCustEl = document.createElement('td'); // Current store data.
+  minCustEl.textContent = currentStore.minCustomers;
+  rowEl.appendChild(minCustEl);
+
+  var maxCustEl = document.createElement('td'); // Current store data.
+  maxCustEl.textContent = currentStore.maxCustomers;
+  rowEl.appendChild(maxCustEl);
+
+  var avgCookiesEl = document.createElement('td'); // 1. Create the element.
+  avgCookiesEl.textContent = currentStore.avgCookies; // 2. Set elements, assign.
+  rowEl.appendChild(avgCookiesEl); // 3. Append the child.
+
+}
+
+document.body.appendChild(tableEl); // Step 3.
+// Create a <div>
+var tableDivEl = document.getElementById('table-div');
+tableDivEl.appendChild(tableEl);
+
 // <######## END NEW TUESDAY CODE ########>
 
 // <######## START WORKING ADAM LECTURE ########>
-
+/*
 // Constructor: just a function which is just an object.
 // When we go to create a new instance we will need each parameter.
 function CookieStore(name, minCustomers, maxCustomers, avgCookies, hourlyCount) {
@@ -38,29 +98,29 @@ CookieStore.prototype.getAvgCookieCount = function(){
 // var hourlyCookies = [50, 100, 45, 23, 7]; // This could be empty array. As it is, will result in all array values.
 // var hourlyCookies = [];
 
-// pikePlace.getAvgCookieCount(); // Calling the function.
+// firstAndPike.getAvgCookieCount(); // Calling the function.
 // otherStore.getAvgCookieCount(); // Associated with the object.
 // anotherStore.getAvgCookieCount();
 
-// An instance of a cookie store. pikePlace is an instance. ToyotaYaris (all), adamsToyotaYaris (instance).
-var pikePlace = new CookieStore('Pike Place', 23, 65, 6.3);
-pikePlace.getAvgCookieCount();
+// An instance of a cookie store. firstAndPike is an instance. ToyotaYaris (all), adamsToyotaYaris (instance).
+var firstAndPike = new CookieStore('Pike Place', 23, 65, 6.3);
+firstAndPike.getAvgCookieCount();
 // Cookie store has parameters, numbers, order is important.
 var otherStore = new CookieStore('Other Store', 100, 200, 10.0); // Important for inheritance later.
 
 // Might even have a for loop that creates all these stores (above).
-// pikePlace.avgCookies // (will give value of 6.3)
+// firstAndPike.avgCookies // (will give value of 6.3)
 
 var anotherStore = new CookieStore('Downtown', 50, 500, 1600.0);
 
-var stores = [pikePlace, otherStore, anotherStore]; // Each instance now knows everything (properties and methods).
+var stores = [firstAndPike, otherStore, anotherStore]; // Each instance now knows everything (properties and methods).
 
-// console.log(pikePlace.getAvgCookieCount());
-// pikePlace.getAvgCookieCount()
+// console.log(firstAndPike.getAvgCookieCount());
+// firstAndPike.getAvgCookieCount()
 // otherStore.getAvgCookieCount()
-// console.log(pikePlace.hourlyCount([0]));
+// console.log(firstAndPike.hourlyCount([0]));
 
-  // pikePlace
+  // firstAndPike
   // {
   //   minCustomers: 23,
   //   maxCustomers: 65,
@@ -107,6 +167,7 @@ document.body.appendChild(tableEl); // Step 3.
 // Create a <div>
 var tableDivEl = document.getElementById('table-div');
 tableDivEl.appendChild(tableEl);
+*/
 // Stick with one script per HTML page for now.
 
 // <######## END WORKING ADAM LECTURE ########>
