@@ -1,3 +1,13 @@
 #first-user-heading {
-  color: red;
+  color: blue;
+}
+
+label, input {
+  display: block;
+}
+
+#new-store-form {
+  min-width: 250px;
+  width: 50%;
+  margin: auto;
 }
