@@ -36,6 +36,7 @@ CookieStore.prototype.salesPerDay = function() {
   }
 };
 
+// Goal 2: function that returns the total cookies for the store.
 CookieStore.prototype.totalSalesPerDay = function() {
   // this.totalSales += sales;
   this.totalSales = 0;
@@ -43,11 +44,6 @@ CookieStore.prototype.totalSalesPerDay = function() {
     this.totalSales += this.dailySales[i];
   }
 };
-
-// Goal 2: function that returns the total cookies for the store.
-// function salesPerStore() {
-//   salesPerDay();
-// };
 
 // CookieStore.prototype.getAvgCookieCount = function() {
 //   for (var iHours = 0; iHours < hoursOpen.length; iHours++) {
@@ -91,6 +87,7 @@ var alki = new CookieStore('Alki', 2, 16, 4.6);
 
 var stores = [firstAndPike, seattleCenter, capitolHill, alki];
 
+// Goal 3:
 // Start with this: For loop ... this.dailySales = []; ... turned into <td> element.
 // Create heading and footer seperately. Each store needs <thead><th><td><td> <th><td><td> <th><td><td><tfoot>
 
@@ -98,6 +95,38 @@ var stores = [firstAndPike, seattleCenter, capitolHill, alki];
 
 // Populate into a simple table. Simple for loop: populate two stores into table.
 var tableEl = document.createElement('table'); // tableEl = <table></table> Step 1. Create entire table.
+
+// All values across each hour of each store with a total.
+// firstAndPike.salesPerDay();
+// firstAndPike.totalSalesPerDay();
+
+/*
+for (var i = 0; i < hoursOpen.length; i++) {
+  // stores[i] // Start: get reference to current store in relation to this loop.
+  var currentStore = this.dailySales[i]; // Access each store to get it's data.
+
+  var rowEl = document.createElement('tr');
+  tableEl.appendChild(rowEl); // Get row element onto the table. Row is parent for each store.
+
+  var nameEl = document.createElement('th'); // Name of the current store.
+  nameEl.textContent = currentStore.name; // A new node element. Defining the text in the <th> tag.
+  rowEl.appendChild(nameEl); // nameEl is the child.
+
+  // Here is a TD element >> Loop through.
+  var minCustEl = document.createElement('td'); // Current store data.
+  minCustEl.textContent = currentStore.minCustomers;
+  rowEl.appendChild(minCustEl);
+
+  var maxCustEl = document.createElement('td'); // Current store data.
+  maxCustEl.textContent = currentStore.maxCustomers;
+  rowEl.appendChild(maxCustEl);
+
+  var avgCookiesEl = document.createElement('td'); // 1. Create the element.
+  avgCookiesEl.textContent = currentStore.avgCookies; // 2. Set elements, assign.
+  rowEl.appendChild(avgCookiesEl); // 3. Append the child.
+  */
+
+// One value for each store.
 
 for (var i = 0; i < stores.length; i++) {
   // stores[i] // Start: get reference to current store in relation to this loop.
