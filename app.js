@@ -72,75 +72,79 @@ for (var i = 0; i < stores.length; i++) {
 // --> Send to DOM / HTML.
 
 // Populate into a simple table. Simple for loop: populate two stores into table.
-
+function renderTableHead(){
 //make <table id="table-id"> ------------------>
-var tableEl = document.createElement('table'); // tableEl
-tableEl.setAttribute('id', 'table-id');
-var tableDivEl = document.getElementById('table-div');
-tableDivEl.appendChild(tableEl);
+  var tableEl = document.createElement('table'); // tableEl
+  tableEl.setAttribute('id', 'table-id');
+  var tableDivEl = document.getElementById('table-div');
+  tableDivEl.appendChild(tableEl);
 
-//make <thead id="thead-id"> ---------------------->
-var theadEl = document.createElement('thead'); // tableEl
-theadEl.setAttribute('id', 'thead-id');
-var tableParEl = document.getElementById('table-id');
-tableParEl.appendChild(theadEl);
+  //make <thead id="thead-id"> ---------------------->
+  var theadEl = document.createElement('thead'); // tableEl
+  theadEl.setAttribute('id', 'thead-id');
+  var tableParEl = document.getElementById('table-id');
+  tableParEl.appendChild(theadEl);
 
-//make <tr id="head-tr-id" -------------->
-var headTrEl = document.createElement('tr');
-headTrEl.setAttribute('id', 'head-tr-id');
-var theadParEl = document.getElementById('thead-id');
-tableParEl.appendChild(headTrEl);
+  //make <tr id="head-tr-id" -------------->
+  var headTrEl = document.createElement('tr');
+  headTrEl.setAttribute('id', 'head-tr-id');
+  var theadParEl = document.getElementById('thead-id');
+  tableParEl.appendChild(headTrEl);
 
-//make <th class=""----------------->
-var emptyThEl = document.createElement('th');
-emptyThEl.setAttribute('class', 'header-row');
-var headTrParEl = document.getElementById('head-tr-id');
-tableParEl.appendChild(emptyThEl);
-
-for (var i = 0; i <= hoursOpen.length; i++) {
-  var thEl = document.createElement('th');
-  thEl.setAttribute('class', 'header-row');
-  thEl.textContent = hoursOpen[i];
+  //make <th class=""----------------->
+  var emptyThEl = document.createElement('th');
+  emptyThEl.setAttribute('class', 'header-row');
   var headTrParEl = document.getElementById('head-tr-id');
-  tableParEl.appendChild(thEl);
-}
+  tableParEl.appendChild(emptyThEl);
 
-var totalsThEl = document.createElement('th');
-totalsThEl.setAttribute('class', 'header-row');
-thEl.textContent = 'Daily Totals';
-var headTrParEl = document.getElementById('head-tr-id');
-tableParEl.appendChild(totalsThEl);
-
-var tbodyEl = document.createElement('tbody');
-tbodyEl.setAttribute('id', 'tbody-id');
-var tableParEl = document.getElementById('table-id');
-tableParEl.appendChild(tbodyEl);
-
-for (var i = 0; i < stores.length; i++) {
-  var trEl = document.createElement('tr');
-  trEl.setAttribute('id', 'tr-id-' + i);
-  var tbodyParEl = document.getElementById('tbody-id');
-  tbodyParEl.appendChild(trEl);
-
-  var storeThEl = document.createElement('th');
-  storeThEl.setAttribute('class', 'row-' + i);
-  storeThEl.textContent = stores[i].name;
-  var trParEl = document.getElementById('tr-id-' + i);
-  trParEl.appendChild(storeThEl);
-
-  for (var j = 0; j < stores[i].dailySales.length; j++) {
-    var storeTdEl = document.createElement('td');
-    storeTdEl.setAttribute('class', 'row-' + i);
-    storeTdEl.textContent = stores[i].dailySales[j];
-    var trParEl = document.getElementById('tr-id-' + i);
-    trParEl.appendChild(storeTdEl);
+  for (var i = 0; i <= hoursOpen.length; i++) {
+    var thEl = document.createElement('th');
+    thEl.setAttribute('class', 'header-row');
+    thEl.textContent = hoursOpen[i];
+    var headTrParEl = document.getElementById('head-tr-id');
+    tableParEl.appendChild(thEl);
   }
-  var totalTdEl = document.createElement('th');
-  totalTdEl.setAttribute('class', 'row-' + i);
-  totalTdEl.textContent = stores[i].totalSales;
-  var trParEl = document.getElementById('tr-id-' + i);
-  trParEl.appendChild(totalTdEl);
+
+  var totalsThEl = document.createElement('th');
+  totalsThEl.setAttribute('class', 'header-row');
+  thEl.textContent = 'Daily Totals';
+  var headTrParEl = document.getElementById('head-tr-id');
+  tableParEl.appendChild(totalsThEl);
 }
+
+function renderTable(){
+  var tbodyEl = document.createElement('tbody');
+  tbodyEl.setAttribute('id', 'tbody-id');
+  var tableParEl = document.getElementById('table-id');
+  tableParEl.appendChild(tbodyEl);
+
+  for (var i = 0; i < stores.length; i++) {
+    var trEl = document.createElement('tr');
+    trEl.setAttribute('id', 'tr-id-' + i);
+    var tbodyParEl = document.getElementById('tbody-id');
+    tbodyParEl.appendChild(trEl);
+
+    var storeThEl = document.createElement('th');
+    storeThEl.setAttribute('class', 'row-' + i);
+    storeThEl.textContent = stores[i].name;
+    var trParEl = document.getElementById('tr-id-' + i);
+    trParEl.appendChild(storeThEl);
+
+    for (var j = 0; j < stores[i].dailySales.length; j++) {
+      var storeTdEl = document.createElement('td');
+      storeTdEl.setAttribute('class', 'row-' + i);
+      storeTdEl.textContent = stores[i].dailySales[j];
+      var trParEl = document.getElementById('tr-id-' + i);
+      trParEl.appendChild(storeTdEl);
+    }
+    var totalTdEl = document.createElement('th');
+    totalTdEl.setAttribute('class', 'row-' + i);
+    totalTdEl.textContent = stores[i].totalSales;
+    var trParEl = document.getElementById('tr-id-' + i);
+    trParEl.appendChild(totalTdEl);
+  }
+}
+renderTableHead();
 // for (var i = 0; i < stores.length; i++) {
 //   // stores[i] // Start: get reference to current store in relation to this loop.
 //   var currentStore = stores[i]; // Access each store to get it's data.
@@ -178,12 +182,21 @@ function handleSubmit(event) {
   var name = event.target.cookieStoreName.value; // Better name would be storeName. New is a reserved name.
   var minCustomers = parseInt(event.target.minCust.value);
   var maxCustomers = parseInt(event.target.maxCust.value);
-  var maxCustomers = parseInt(event.target.maxCust.value); // Format float to interger.
-  var avgCookies = parseInt(event.target.avgCookies.value); // Format float to interger.
+  var maxCustomers = parseInt(event.target.maxCust.value);
+  var avgCookies = parseFloat(event.target.avgCookies.value);
 
+  var genericStore = new CookieStore(name, minCustomers, maxCustomers, avgCookies);
+  stores.push(genericStore);
+
+  genericStore.salesPerDay();
+  genericStore.totalSalesPerDay();
+  renderTable();
+
+ //parseInt(event.target.avgCookies.value); // Format float to interger.
+//console.log(avgCookies);
  // store is only available within the scope of this function.
  // makes available for array.
-  stores.push(store);
+  //stores.push(store);
 
  // console.log(newStoreName);
  // console.log(minCustomers);
@@ -192,7 +205,7 @@ function handleSubmit(event) {
  // console.log('User Pressed submit Button on Form!');
 
  // Showing we have a new cookie store with all properties.
-  var store = new CookieStore(name, minCustomers, maxCustomers, avgCookies);
+  //var store = new CookieStore(name, minCustomers, maxCustomers, avgCookies);
  // console.log(store);
-  console.log();
+  //console.log(genericStore);
 }
