@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sales - Pat's Salmon Cookies</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+  </head>
+
+  <body>
+    <div id="page">
+
+        <header>
+          <h1>Pat's Salmon Cookies</h1>
+          <img id="salmon" src="salmon.png" alt="Salmon">
+          <nav>
+            <ul id="gallery">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="sales.html" class="selected">Sales</a></li>
+            </ul>
+          </nav>
+        </header>
+
+        <div class="form">
+          <form id="new-store-form">
+            <fieldset>
+              <legend>Enter New Cookie Store Info</legend>
+              <br />
+              <label for="cookieStoreName">Cookie Store Name:</label>
+              <input type="text" name="cookieStoreName" value="">
+
+              <label for="minCust">Minimum Customers/Hour:</label>
+              <input type="text" name="minCust" value="">
+
+              <label for="maxCust">Maximum Customers/Hour:</label>
+              <input type="text" name="maxCust" value="">
+
+              <label for="avgCookies">Average Cookies/Customers:</label>
+              <input type="text" name="avgCookies" value="">
+              <br />
+              <button type="submit">Submit</button>
+            </fieldset>
+          </form>
+        </div>
+        <div id="table-div">
+        </div>
+
+      <footer>Pat's Salmon Cookies © 2017</footer>
+    <!-- End div id page -->
+    </div>
+
+    </div>
+  </body>
+  <script src="app.js" type="text/javascript"></script>
+</html>

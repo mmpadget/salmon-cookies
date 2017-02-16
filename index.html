@@ -2,81 +2,38 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Home - Pat's Salmon Cookies</title>
     <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
   </head>
+
   <body>
-    <section>
-      <h1>Dynamic Table</h1>
-    </section>
+    <div id="page">
 
-    <div id="table-div">
+        <header>
+          <h1>Pat's Salmon Cookies</h1>
+          <img id="salmon" src="salmon.png" alt="Salmon">
+          <nav>
+            <ul id="gallery">
+              <li><a href="index.html" class="selected">Home</a></li>
+              <li><a href="sales.html">Sales</a></li>
+            </ul>
+          </nav>
+        </header>
+        <section id="page-text">
+          <p>Here at Pat's we have the finest coffee and salmon cookies money can buy. Our cookies are even shaped like salmon. The perfect dunking cookie for your coffee. Really! But don't take our word for it; hear what our customers have to say. "Sugary and salty - that's my jam." Wat?</p>
+          <ul>
+            <li>Locations: 1st and Pike, SeaTac Airport, Seattle Center, Capitol Hill, Alki.</li>
+            <li>Hours: 6:00 AM to 8:00 PM for all locations.</li>
+            <li>Phone: 1-800-COO-KIES, 1-800-200-5437</li>
+          </ul>
+        </section>
+        
+      <footer>Pat's Salmon Cookies © 2017</footer>
+    <!-- End div id page -->
     </div>
-    <div class="form">
-      <form id="new-store-form">
-        <fieldset>
-          <legend>Enter New Cookie Store Info</legend>
-          <br />
-          <label for="cookieStoreName">Cookie Store Name:</label>
-          <input type="text" name="cookieStoreName" value="">
 
-          <label for="minCust">Minimum Customers/Hour:</label>
-          <input type="text" name="minCust" value="">
-
-          <label for="maxCust">Maximum Customers/Hour:</label>
-          <input type="text" name="maxCust" value="">
-
-          <label for="avgCookies">Average Cookies/Customers:</label>
-          <input type="text" name="avgCookies" value="">
-          <br />
-          <button type="submit">Submit</button>
-        </fieldset>
-      </form>
     </div>
-<!-- Example Table: Page 140 -->
-    <!-- <table>
-      <thead>
-        <tr>
-          <th>1</th>
-          <th>2</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td></td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td></td>
-        </tr>
-      </tfoot>
-    </table> -->
-<!-- End Example Table: Page 140 -->
-
-    <!-- <section id="example">
-      <h1>Example</h1>
-      <p>Your output for each location should look like this:</p>
-      <h4>1st and Pike</h4>
-      <ul>
-        <li>6am: 16 cookies</li>
-        <li>7am: 20 cookies</li>
-        <li>8am: 35 cookies</li>
-        <li>9am: 48 cookies</li>
-        <li>10am: 56 cookies</li>
-        <li>11am: 77 cookies</li>
-        <li>12pm: 93 cookies</li>
-        <li>1pm: 144 cookies</li>
-        <li>2pm: 119 cookies</li>
-        <li>3pm: 84 cookies</li>
-        <li>4pm: 61 cookies</li>
-        <li>5pm: 23 cookies</li>
-        <li>6pm: 42 cookies</li>
-        <li>7pm: 57 cookies</li>
-        <li>8pm: 29 cookies</li>
-      </ul>
-      <h4>Total: 657 cookies</h4>
-    </section> -->
   </body>
   <script src="app.js" type="text/javascript"></script>
 </html>
