@@ -115,7 +115,7 @@ fieldset {
 
 legend {
   color: #80FF80;
-  text-transform: uppercase;;
+  /*text-transform: uppercase;*/
 }
 
 #new-store-form {
@@ -150,6 +150,14 @@ footer {
 td {
   color: #80FF80;
 }
+
+/*#tfoot-id {
+  color: black;
+}
+
+.footer-row {
+  color: black;
+}*/
 
 /*Deep Color: hex;
 tan: D9AC78;

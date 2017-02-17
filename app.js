@@ -13,7 +13,7 @@ function CookieStore(name, minCustomers, maxCustomers, avgCookies, hourlyCount, 
   //this.customers = customers;
   //this.sales = sales;
   this.totalSales = 0;
-  this.dailySales = [];
+  this.dailySales = []; // Holds hourly sales.
 }
 
 // Store Data
@@ -57,11 +57,6 @@ for (var i = 0; i < stores.length; i++) {
   stores[i].totalSalesPerDay();
 }
 
-// Nested for loop (un-nest it) which means you'll have to rename things.
-// take second loop (that's creating the row and header and td, put into a method.)
-// Everything below where you created the table body.
-// Put everything into methods.
-
 // Adding Elements: createElement(), createTextNode(), appendChild().
 function renderTable(){
   var tbodyEl = document.createElement('tbody');
@@ -98,6 +93,32 @@ function renderTable(){
     totalTdEl.textContent = stores[i].totalSales;
     var trParEl = document.getElementById('tr-id-' + i);
     trParEl.appendChild(totalTdEl);
+  }
+  // Create <tfoot> element, attribute id, add to parent by id.
+  var tfootEl = document.createElement('tfoot');
+  tfootEl.setAttribute('id', 'tfoot-id');
+  tfootEl.setAttribute('class', 'footer-row');
+  var tableParEl = document.getElementById('table-id');
+  tableParEl.appendChild(tfootEl);
+
+  var totalTextTdEl = document.createElement('td');
+  totalTextTdEl.setAttribute('id', 'tfoot-text-total');
+  totalTextTdEl.textContent = 'Total';
+  tfootEl.appendChild(totalTextTdEl);
+
+  // hours
+  for (var i = 0; i < hoursOpen.length; i++) {
+    // hoursOpen[i];
+    // stores
+    var totalHourSales = 0;
+    for (var j = 0; j < stores.length; j++) {
+      totalHourSales += stores[j].dailySales[i]; // Loop through stores hourly sales.
+    }
+    // Create <td> element
+    var totalHourTdEl = document.createElement('td');
+    totalHourTdEl.setAttribute('class', 'row-' + i);
+    totalHourTdEl.textContent = totalHourSales;
+    tfootEl.appendChild(totalHourTdEl);
   }
 }
 
@@ -163,7 +184,9 @@ function handleSubmit(event) {
 
   genericStore.salesPerDay();
   genericStore.totalSalesPerDay();
-  var grabTableId = document.getElementById('tbody-id'); // grabbing main body of table.
+  var grabFooterId = document.getElementById('tfoot-id'); // Fixes footer row duplication after submit event.
+  grabFooterId.remove();
+  var grabTableId = document.getElementById('tbody-id'); // Fixes table duplication after submit event.
   grabTableId.remove(); // removing body then re-render with updated array data.
   renderTable(); // Take this out of the event. It's causing duplication.
   // By making into a method we can take it out. Each time we'll render a row instead of the whole table.
