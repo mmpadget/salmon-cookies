@@ -15,13 +15,6 @@ function CookieStore(name, minCustomers, maxCustomers, avgCookies, hourlyCount, 
   this.dailySales = [];
 }
 
-// Adam's example works for one table.
-// CookieStore.prototype.getAvgCookieCount = function(){
-//   console.log('got avg cookie count.');
-//   return Math.floor(Math.random() * ((this.range + 1) + this.minCustomers) * this.avgCookies);
-//   this.avgCookies;
-// };
-
 // 1. Randomize customer data: customers.
 // 2. Determine cookies per hour: cookies.
 // 3. Loop through each hour for each store
@@ -65,13 +58,93 @@ for (var i = 0; i < stores.length; i++) {
   stores[i].salesPerDay();
   stores[i].totalSalesPerDay();
 }
-// Goal 3:
-// Start with this: For loop ... this.dailySales = []; ... turned into <td> element.
-// Create heading and footer seperately. Each store needs <thead><th><td><td> <th><td><td> <th><td><td><tfoot>
 
-// --> Send to DOM / HTML.
+// Nested for loop (un-nest it) which means you'll have to rename things.
+// take second loop (that's creating the row and header and td, put into a method.)
+// Everything below where you created the table body.
+// Put everything into methods.
 
-// Populate into a simple table. Simple for loop: populate two stores into table.
+// Adding Elements: createElement(), createTextNode(), appendChild().
+function renderTable(){
+  var tbodyEl = document.createElement('tbody');
+  tbodyEl.setAttribute('id', 'tbody-id');
+  var tableParEl = document.getElementById('table-id');
+  tableParEl.appendChild(tbodyEl);
+
+  // Loop through each store.
+  for (var i = 0; i < stores.length; i++) {
+    // Create <tr> element, attribute id, add to parent by id.
+    var trEl = document.createElement('tr');
+    trEl.setAttribute('id', 'tr-id-' + i);
+    var tbodyParEl = document.getElementById('tbody-id');
+    tbodyParEl.appendChild(trEl);
+
+    // Create <th> element, attribute id, add to parent by id.
+    var storeThEl = document.createElement('th');
+    storeThEl.setAttribute('class', 'row-' + i);
+    storeThEl.textContent = stores[i].name;
+    var trParEl = document.getElementById('tr-id-' + i);
+    trParEl.appendChild(storeThEl);
+
+    // Loop through daily sales array. Set text content.
+    for (var j = 0; j < stores[i].dailySales.length; j++) {
+      var storeTdEl = document.createElement('td');
+      storeTdEl.setAttribute('class', 'row-' + i);
+      storeTdEl.textContent = stores[i].dailySales[j];
+      var trParEl = document.getElementById('tr-id-' + i);
+      trParEl.appendChild(storeTdEl);
+    }
+    var totalTdEl = document.createElement('th');
+    totalTdEl.setAttribute('class', 'row-' + i);
+    totalTdEl.textContent = stores[i].totalSales;
+    var trParEl = document.getElementById('tr-id-' + i);
+    trParEl.appendChild(totalTdEl);
+  }
+}
+
+// <######## WORKING WED RENDER TABLE CODE ########>
+/*
+// Adding Elements: createElement(), createTextNode(), appendChild().
+function renderTable(){
+  var tbodyEl = document.createElement('tbody');
+  tbodyEl.setAttribute('id', 'tbody-id');
+  var tableParEl = document.getElementById('table-id');
+  tableParEl.appendChild(tbodyEl);
+
+  // Loop through each store.
+  for (var i = 0; i < stores.length; i++) {
+    // Create <tr> element, attribute id, add to parent by id.
+    var trEl = document.createElement('tr');
+    trEl.setAttribute('id', 'tr-id-' + i);
+    var tbodyParEl = document.getElementById('tbody-id');
+    tbodyParEl.appendChild(trEl);
+
+    // Create <th> element, attribute id, add to parent by id.
+    var storeThEl = document.createElement('th');
+    storeThEl.setAttribute('class', 'row-' + i);
+    storeThEl.textContent = stores[i].name;
+    var trParEl = document.getElementById('tr-id-' + i);
+    trParEl.appendChild(storeThEl);
+
+    // Loop through daily sales array.
+    for (var j = 0; j < stores[i].dailySales.length; j++) {
+      var storeTdEl = document.createElement('td');
+      storeTdEl.setAttribute('class', 'row-' + i);
+      storeTdEl.textContent = stores[i].dailySales[j];
+      var trParEl = document.getElementById('tr-id-' + i);
+      trParEl.appendChild(storeTdEl);
+    }
+    var totalTdEl = document.createElement('th');
+    totalTdEl.setAttribute('class', 'row-' + i);
+    totalTdEl.textContent = stores[i].totalSales;
+    var trParEl = document.getElementById('tr-id-' + i);
+    trParEl.appendChild(totalTdEl);
+  }
+}
+*/
+// <######## END WORKING WED RENDER TABLE CODE ########>
+
+// Populate into a simple table. Something to abstract.
 function renderTableHead(){
 //make <table id="table-id"> ------------------>
   var tableEl = document.createElement('table'); // tableEl
@@ -111,70 +184,25 @@ function renderTableHead(){
   var headTrParEl = document.getElementById('head-tr-id');
   tableParEl.appendChild(totalsThEl);
 }
-
-function renderTable(){
-  var tbodyEl = document.createElement('tbody');
-  tbodyEl.setAttribute('id', 'tbody-id');
-  var tableParEl = document.getElementById('table-id');
-  tableParEl.appendChild(tbodyEl);
-
-  for (var i = 0; i < stores.length; i++) {
-    var trEl = document.createElement('tr');
-    trEl.setAttribute('id', 'tr-id-' + i);
-    var tbodyParEl = document.getElementById('tbody-id');
-    tbodyParEl.appendChild(trEl);
-
-    var storeThEl = document.createElement('th');
-    storeThEl.setAttribute('class', 'row-' + i);
-    storeThEl.textContent = stores[i].name;
-    var trParEl = document.getElementById('tr-id-' + i);
-    trParEl.appendChild(storeThEl);
-
-    for (var j = 0; j < stores[i].dailySales.length; j++) {
-      var storeTdEl = document.createElement('td');
-      storeTdEl.setAttribute('class', 'row-' + i);
-      storeTdEl.textContent = stores[i].dailySales[j];
-      var trParEl = document.getElementById('tr-id-' + i);
-      trParEl.appendChild(storeTdEl);
-    }
-    var totalTdEl = document.createElement('th');
-    totalTdEl.setAttribute('class', 'row-' + i);
-    totalTdEl.textContent = stores[i].totalSales;
-    var trParEl = document.getElementById('tr-id-' + i);
-    trParEl.appendChild(totalTdEl);
-  }
-}
 renderTableHead();
-// for (var i = 0; i < stores.length; i++) {
-//   // stores[i] // Start: get reference to current store in relation to this loop.
-//   var currentStore = stores[i]; // Access each store to get it's data.
-//
-//   var rowEl = document.createElement('tr'); // If it was 'img' it would be a self closing tag and would work.
-//   tableEl.appendChild(rowEl); // Get row element onto the table. Row is parent for each store.
-//
-//   var nameEl = document.createElement('th'); // Name of the current store.
-//   nameEl.textContent = currentStore.name; // A new node element. Defining the text in the <th> tag.
-//   rowEl.appendChild(nameEl); // nameEl is the child.
-//
-//   var minCustEl = document.createElement('td'); // Current store data.
-//   minCustEl.textContent = currentStore.minCustomers;
-//   rowEl.appendChild(minCustEl);
-//
-//   var maxCustEl = document.createElement('td'); // Current store data.
-//   maxCustEl.textContent = currentStore.maxCustomers;
-//   rowEl.appendChild(maxCustEl);
-//
-//   var avgCookiesEl = document.createElement('td'); // 1. Create the element.
-//   avgCookiesEl.textContent = currentStore.avgCookies; // 2. Set elements, assign.
-//   rowEl.appendChild(avgCookiesEl); // 3. Append the child.
-//
-// }
 
 var storeFormEl = document.getElementById('new-store-form');
-
-// The actual node and the target.
 storeFormEl.addEventListener('submit', handleSubmit);
 
+// Prevent table duplication. Remove Elements?
+var tableExists = false;
+if (true) {
+  // If true the table is created, so delete it, or don't create it again.
+
+  // var removeEl = document.getElementById('table-div');
+  // var containerEl = removeEl.parentNode;
+  // containerEl.removeChild(removeEl);
+} else {
+  // If false the table doesn't exist, so create it and set flag to true.
+  var tableExists = true;
+}
+
+// Append the existing instance of the table rather than creating a new one?
 function handleSubmit(event) {
   event.preventDefault();
   event.stopPropagation();
@@ -190,22 +218,6 @@ function handleSubmit(event) {
 
   genericStore.salesPerDay();
   genericStore.totalSalesPerDay();
-  renderTable();
-
- //parseInt(event.target.avgCookies.value); // Format float to interger.
-//console.log(avgCookies);
- // store is only available within the scope of this function.
- // makes available for array.
-  //stores.push(store);
-
- // console.log(newStoreName);
- // console.log(minCustomers);
- // console.log(maxCustomers);
- // console.log(avgCookies);
- // console.log('User Pressed submit Button on Form!');
-
- // Showing we have a new cookie store with all properties.
-  //var store = new CookieStore(name, minCustomers, maxCustomers, avgCookies);
- // console.log(store);
-  //console.log(genericStore);
+  renderTable(); // Take this out of the event. It's causing duplication.
+  // By making into a method we can take it out. Each time we'll render a row instead of the whole table.
 }
