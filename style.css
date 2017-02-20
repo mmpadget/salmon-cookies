@@ -139,28 +139,25 @@ th.header-row {
   vertical-align: middle;
 }
 
-th.header-row {
-  /*background-color: black;*/
-}
-
 th.row-0, th.row-1, th.row-2, th.row-3, th.row-4 {
-  background-color: #DDDDDD;
-  text-align: left;
-  padding-right: 20px;
+  /*background-color: #DDDDDD;*/
+  text-align: center;
+  /*padding-right: 20px;*/
 }
 
 #tfoot-text-total {
   text-align: left;
-  padding-right: 20px;
+  text-align: center;
+  /*padding-right: 20px;*/
 }
 
-tr#tr-id-1 {
+/*tr#tr-id-1 {
   background-color: #F8F8F8;
 }
 
 tr#tr-id-3 {
   background-color: #F8F8F8;
-}
+}*/
 
 th, td {
   border: 1px solid #DDDDDD;

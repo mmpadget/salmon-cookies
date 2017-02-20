@@ -6,10 +6,7 @@ function CookieStore(name, minCustomers, maxCustomers, avgCookies, hourlyCount, 
   this.minCustomers = minCustomers; // "this" is dynamic and "this" context will change over and over again.
   this.maxCustomers = maxCustomers; // "this" knows what it is depending on the context.
   this.avgCookies = avgCookies; // "this" gets replaced with "pikePlace" below.
-  //this.hourlyCount = []; // Default empty array. Here, this would be empty every time.
   this.range = maxCustomers - minCustomers;
-  //this.customers = customers;
-  //this.sales = sales;
   this.totalSales = 0;
   this.dailySales = []; // Holds hourly sales.
 }
@@ -36,9 +33,17 @@ var hoursOpen = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '
 // Array of all sales each hour during one day.
 CookieStore.prototype.salesPerDay = function() {
   for (var iHours = 0; iHours < hoursOpen.length; iHours++) {
-    this.dailySales.push(Math.floor(Math.random() * ((this.range + 1) + this.minCustomers) * this.avgCookies));
+    //this.dailySales.push(Math.floor(Math.random() * this.range) + this.minCustomers);
+    this.dailySales.push(Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers);
   }
 };
+
+// MDN: Getting a random integer between two values, inclusive.
+// function getRandomIntInclusive(min, max) {
+//   min = Math.ceil(min);
+//   max = Math.floor(max);
+//   return Math.floor(Math.random() * (max - min + 1)) + min;
+// }
 
 // Function that returns the total cookies for the store.
 CookieStore.prototype.totalSalesPerDay = function() {
@@ -56,7 +61,7 @@ for (var i = 0; i < stores.length; i++) {
 }
 
 // Adding Elements: createElement(), createTextNode(), appendChild().
-function renderTable(){
+function renderTable() {
   var tbodyEl = document.createElement('tbody');
   tbodyEl.setAttribute('id', 'tbody-id');
   var tableParEl = document.getElementById('table-id');
@@ -120,9 +125,82 @@ function renderTable(){
   }
 }
 
-// Populate into a simple table.
+// function renderTableId() {
+//   //make <table id="table-id">
+//   var tableEl = document.createElement('table'); // tableEl
+//   tableEl.setAttribute('id', 'table-id');
+//   var tableDivEl = document.getElementById('table-div');
+//   tableDivEl.appendChild(tableEl);
+//   console.log('1. "renderTableId" function ran.');
+// }
+// // renderTableId();
+//
+// function renderTableHeaderId() {
+//   //make <thead id="thead-id">
+//   var theadEl = document.createElement('thead'); // tableEl
+//   theadEl.setAttribute('id', 'thead-id');
+//   var tableParEl = document.getElementById('table-id');
+//   tableParEl.appendChild(theadEl);
+//   console.log('2. "renderTableHeaderId" function ran.');
+// }
+// // renderTableHeaderId();
+//
+// function renderTableRowId() {
+//   //make <tr id="head-tr-id"
+//   var headTrEl = document.createElement('tr');
+//   headTrEl.setAttribute('id', 'head-tr-id');
+//   var theadParEl = document.getElementById('thead-id');
+//   tableParEl.appendChild(headTrEl); // <----- Error begins here.
+// }
+// console.log('3. "renderTableRowId" function ran.');
+// // renderTableRowId();
+//
+// function renderTableHeaderRow() {
+//   //make <th class=""> EMPTY
+//   var emptyThEl = document.createElement('th');
+//   emptyThEl.setAttribute('class', 'header-row');
+//   var headTrParEl = document.getElementById('head-tr-id');
+//   tableParEl.appendChild(emptyThEl);
+//   console.log('4. "renderTableHeaderRow" function ran.');
+// }
+// // renderTableHeaderRow();
+//
+// function renderHeaderHours() {
+//   for (var i = 0; i <= hoursOpen.length; i++) {
+//     var thEl = document.createElement('th');
+//     thEl.setAttribute('class', 'header-row');
+//     thEl.setAttribute('id', 'hr-id-' + i); //new
+//     thEl.textContent = hoursOpen[i];
+//     var headTrParEl = document.getElementById('head-tr-id');
+//     tableParEl.appendChild(thEl);
+//   }
+//   console.log('5. "renderHeaderHours" function ran.');
+// }
+// // renderHeaderHours();
+//
+// function renderHeaderTitle() {
+//   var totalsThEl = document.createElement('th');
+//   totalsThEl.setAttribute('id', 'header-row-total');
+//   thEl.textContent = 'Daily Location Total';
+//   // Issue: creates extra header row cell in the wrong spot.
+//   var headTrParEl = document.getElementById('head-tr-id');
+//   tableParEl.appendChild(totalsThEl);
+//   console.log('6. "renderHeaderTitle" function ran.');
+// }
+// // renderHeaderTitle();
+
+// renderTableId();
+// renderTableHeaderId();
+// renderTableRowId();
+// renderTableHeaderRow();
+// renderHeaderHours();
+// renderHeaderTitle();
+
+// renderTable();
+
+//Populate into a table.
 function renderTableHead() {
-//make <table id="table-id"> ------------------>
+  //make <table id="table-id"> ------------------>
   var tableEl = document.createElement('table'); // tableEl
   tableEl.setAttribute('id', 'table-id');
   var tableDivEl = document.getElementById('table-div');
@@ -140,7 +218,7 @@ function renderTableHead() {
   var theadParEl = document.getElementById('thead-id');
   tableParEl.appendChild(headTrEl);
 
-  //make <th class=""----------------->
+  //make <th class="" EMPTY ----------------->
   var emptyThEl = document.createElement('th');
   emptyThEl.setAttribute('class', 'header-row');
   var headTrParEl = document.getElementById('head-tr-id');
@@ -157,14 +235,11 @@ function renderTableHead() {
   var totalsThEl = document.createElement('th');
   totalsThEl.setAttribute('id', 'header-row-total');
   thEl.textContent = 'Daily Location Total';
-
   // Issue: creates extra header row cell in the wrong spot.
-  // var totalsThEl = document.createElement('th');
-  // totalsThEl.setAttribute('class', 'header-row');
-  // thEl.textContent = 'Daily Location Total';
   // var headTrParEl = document.getElementById('head-tr-id');
   // tableParEl.appendChild(totalsThEl);
 }
+
 renderTableHead();
 renderTable();
 
