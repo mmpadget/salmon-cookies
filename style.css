@@ -19,10 +19,6 @@ body {
 .form {
 }
 
-header {
-  /*background-color: #AA4339;*/
-}
-
 a {
   color: #F1F1F1;
   text-decoration: none;
@@ -53,9 +49,6 @@ nav a {
 
 nav a.selected {
   color: #D9AC78;
-  /*font-size: 25px;*/
-  /*text-decoration: underline;*/
-  /*color: #D9AC78;*/
 }
 
 nav a:hover {
@@ -64,9 +57,7 @@ nav a:hover {
 }
 
 nav a:visited {
-  /*font-size: 25px;*/
-  /*text-decoration: underline;*/
-  /*color: #D9AC78;*/
+
 }
 
 h1 {
@@ -91,12 +82,10 @@ p {
 
 ul {
   color: #3D343D;
-  /*list-style: none;*/
   list-style: circle;
   font-size: 20px;
   line-height: 1.5em;
   text-indent: 0;
-  /*margin-bottom: 25px;*/
 }
 
 img {
@@ -115,15 +104,12 @@ fieldset {
 
 legend {
   color: #80FF80;
-  /*text-transform: uppercase;*/
 }
 
 #new-store-form {
-  /*background-color: #AA4339;*/
   min-width: 250px;
   width: 50%;
   margin: 25px auto;
-  /*margin-bottom: 25px;*/
   color: #3D343D;
   list-style: none;
   font-size: 20px;
@@ -131,33 +117,65 @@ legend {
 }
 
 footer {
-  color: #F1F1F1;
+  color: #3E3F30;
   font-family: helvetica, arial, verdana, sans-serif;
   text-align: center;
   font-size: 12px;
   margin: 25px 0 0 0;
-  /*text-decoration: underline;*/
-  /*color: #D9AC78;*/
 }
 
 #table-div {
-  font-family: Georgia, Times;
+  font-family: helvetica, arial, verdana, sans-serif;
+  font-size: 14px;
   color: #3D343D;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  background-color: white;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  overflow: scroll;
+}
+
+th.header-row {
+  background-color: #DDDDDD;
+  vertical-align: middle;
+}
+
+th.header-row {
+  /*background-color: black;*/
+}
+
+th.row-0, th.row-1, th.row-2, th.row-3, th.row-4 {
+  background-color: #DDDDDD;
+  text-align: left;
+  padding-right: 20px;
+}
+
+#tfoot-text-total {
+  text-align: left;
+  padding-right: 20px;
+}
+
+tr#tr-id-1 {
+  background-color: #F8F8F8;
+}
+
+tr#tr-id-3 {
+  background-color: #F8F8F8;
+}
+
+th, td {
+  border: 1px solid #DDDDDD;
+  padding: 10px;
+  margin: 0px;
 }
 
 td {
-  color: #80FF80;
+  color: #3D343D;
+  text-align: right;
 }
 
-/*#tfoot-id {
-  color: black;
+tfoot.footer-row {
+  background-color: #DDDDDD;
 }
-
-.footer-row {
-  color: black;
-}*/
 
 /*Deep Color: hex;
 tan: D9AC78;
