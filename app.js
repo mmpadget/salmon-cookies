@@ -1,7 +1,5 @@
 'use strict';
 
-// <######## START NEW TUESDAY CODE ########>
-
 // CookieStore Constructor and object.
 function CookieStore(name, minCustomers, maxCustomers, avgCookies, hourlyCount, customers, sales, totalSales) {
   this.name = name; // The name of the cookie store.
@@ -33,7 +31,7 @@ var alki = new CookieStore('Alki', 2, 16, 4.6);
 // Stores Array
 var stores = [firstAndPike, seaTacAirport, seattleCenter, capitolHill, alki];
 // Hours Array
-var hoursOpen = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+var hoursOpen = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm'];
 
 // Array of all sales each hour during one day.
 CookieStore.prototype.salesPerDay = function() {
@@ -103,7 +101,7 @@ function renderTable(){
 
   var totalTextTdEl = document.createElement('td');
   totalTextTdEl.setAttribute('id', 'tfoot-text-total');
-  totalTextTdEl.textContent = 'Total';
+  totalTextTdEl.textContent = 'Totals';
   tfootEl.appendChild(totalTextTdEl);
 
   // hours
@@ -122,8 +120,8 @@ function renderTable(){
   }
 }
 
-// Populate into a simple table. Something to abstract?
-function renderTableHead(){
+// Populate into a simple table.
+function renderTableHead() {
 //make <table id="table-id"> ------------------>
   var tableEl = document.createElement('table'); // tableEl
   tableEl.setAttribute('id', 'table-id');
@@ -151,16 +149,21 @@ function renderTableHead(){
   for (var i = 0; i <= hoursOpen.length; i++) {
     var thEl = document.createElement('th');
     thEl.setAttribute('class', 'header-row');
+    thEl.setAttribute('id', 'hr-id-' + i); //new
     thEl.textContent = hoursOpen[i];
     var headTrParEl = document.getElementById('head-tr-id');
     tableParEl.appendChild(thEl);
   }
-
   var totalsThEl = document.createElement('th');
-  totalsThEl.setAttribute('class', 'header-row');
-  thEl.textContent = 'Daily Totals';
-  var headTrParEl = document.getElementById('head-tr-id');
-  tableParEl.appendChild(totalsThEl);
+  totalsThEl.setAttribute('id', 'header-row-total');
+  thEl.textContent = 'Daily Location Total';
+
+  // Issue: creates extra header row cell in the wrong spot.
+  // var totalsThEl = document.createElement('th');
+  // totalsThEl.setAttribute('class', 'header-row');
+  // thEl.textContent = 'Daily Location Total';
+  // var headTrParEl = document.getElementById('head-tr-id');
+  // tableParEl.appendChild(totalsThEl);
 }
 renderTableHead();
 renderTable();
@@ -191,92 +194,3 @@ function handleSubmit(event) {
   renderTable(); // Take this out of the event. It's causing duplication.
   // By making into a method we can take it out. Each time we'll render a row instead of the whole table.
 }
-
-// <######## WORKING WED RENDER TABLE CODE ########>
-/*
-// Adding Elements: createElement(), createTextNode(), appendChild().
-function renderTable(){
-  var tbodyEl = document.createElement('tbody');
-  tbodyEl.setAttribute('id', 'tbody-id');
-  var tableParEl = document.getElementById('table-id');
-  tableParEl.appendChild(tbodyEl);
-
-  // Loop through each store.
-  for (var i = 0; i < stores.length; i++) {
-    // Create <tr> element, attribute id, add to parent by id.
-    var trEl = document.createElement('tr');
-    trEl.setAttribute('id', 'tr-id-' + i);
-    var tbodyParEl = document.getElementById('tbody-id');
-    tbodyParEl.appendChild(trEl);
-
-    // Create <th> element, attribute id, add to parent by id.
-    var storeThEl = document.createElement('th');
-    storeThEl.setAttribute('class', 'row-' + i);
-    storeThEl.textContent = stores[i].name;
-    var trParEl = document.getElementById('tr-id-' + i);
-    trParEl.appendChild(storeThEl);
-
-    // Loop through daily sales array.
-    for (var j = 0; j < stores[i].dailySales.length; j++) {
-      var storeTdEl = document.createElement('td');
-      storeTdEl.setAttribute('class', 'row-' + i);
-      storeTdEl.textContent = stores[i].dailySales[j];
-      var trParEl = document.getElementById('tr-id-' + i);
-      trParEl.appendChild(storeTdEl);
-    }
-    var totalTdEl = document.createElement('th');
-    totalTdEl.setAttribute('class', 'row-' + i);
-    totalTdEl.textContent = stores[i].totalSales;
-    var trParEl = document.getElementById('tr-id-' + i);
-    trParEl.appendChild(totalTdEl);
-  }
-}
-*/
-// <######## END WORKING WED RENDER TABLE CODE ########>
-
-// <######## WORKING WED TABLE HEAD CODE ########>
-/*
-// Populate into a simple table. Something to abstract?
-function renderTableHead(){
-//make <table id="table-id"> ------------------>
-  var tableEl = document.createElement('table'); // tableEl
-  tableEl.setAttribute('id', 'table-id');
-  var tableDivEl = document.getElementById('table-div');
-  tableDivEl.appendChild(tableEl);
-
-  //make <thead id="thead-id"> ---------------------->
-  var theadEl = document.createElement('thead'); // tableEl
-  theadEl.setAttribute('id', 'thead-id');
-  var tableParEl = document.getElementById('table-id');
-  tableParEl.appendChild(theadEl);
-
-  //make <tr id="head-tr-id" -------------->
-  var headTrEl = document.createElement('tr');
-  headTrEl.setAttribute('id', 'head-tr-id');
-  var theadParEl = document.getElementById('thead-id');
-  tableParEl.appendChild(headTrEl);
-
-  //make <th class=""----------------->
-  var emptyThEl = document.createElement('th');
-  emptyThEl.setAttribute('class', 'header-row');
-  var headTrParEl = document.getElementById('head-tr-id');
-  tableParEl.appendChild(emptyThEl);
-
-  for (var i = 0; i <= hoursOpen.length; i++) {
-    var thEl = document.createElement('th');
-    thEl.setAttribute('class', 'header-row');
-    thEl.textContent = hoursOpen[i];
-    var headTrParEl = document.getElementById('head-tr-id');
-    tableParEl.appendChild(thEl);
-  }
-
-  var totalsThEl = document.createElement('th');
-  totalsThEl.setAttribute('class', 'header-row');
-  thEl.textContent = 'Daily Totals';
-  var headTrParEl = document.getElementById('head-tr-id');
-  tableParEl.appendChild(totalsThEl);
-}
-renderTableHead();
-
-// <######## WORKING WED TABLE HEAD CODE ########>
-*/
